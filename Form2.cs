@@ -10,22 +10,28 @@ using System.Windows.Forms;
 
 namespace ToDo_app_new
 {
-    public partial class Form1 : Form
+    public partial class Form2 : Form
     {
-        public Form1()
+        public Form2()
         {
             InitializeComponent();
+            label2.Text = DateTime.Now.ToString("dd-MM-yyyy HH:mm");
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 showForm = new Form2();
-            showForm.Show();
+            this.Close();
+            //Form2 closeWindow = new Form2();
+            //closeWindow.Close();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
         }
     }
 }
