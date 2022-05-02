@@ -35,7 +35,7 @@ namespace ToDo_app_new
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var notes = this.Notes;
+            var notes = Notes;
             notes_data.DataSource = notes;
         }
 
