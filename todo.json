@@ -1,0 +1,17 @@
+[
+  {
+    "Note": "Pay rent",
+    "Created": "2022-05-01",
+    "Check": false
+  },
+  {
+    "Note": "Do laundry",
+    "Created": "2022-05-02",
+    "Check": false
+  },
+  {
+    "Note": "Buy groceries",
+    "Created": "2022-05-03",
+    "Check": false
+  }
+]
