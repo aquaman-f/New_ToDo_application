@@ -21,5 +21,16 @@ namespace ToDo_app_new
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form21 addNew = new Form21();
+            addNew.Show();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
