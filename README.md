@@ -11,6 +11,8 @@ Sprint description:
 
 Goal of sprint: to complete application minimum requirements and functions.
 
+Sprint start: 3.5.2022.
+
 Time to complete sprint: by 16:00 5.5.2022.
 
 Steps presented in green in "Wireframe". 
