@@ -13,6 +13,6 @@ Steps presented in green in "Wireframe".
 Total 5 functions to working state and finalize application appearance. See https://github.com/aquaman-f/New_ToDo_application/projects/1 for 
 further info, such as who is performing the task.
 
-Time to complete each step: 1-2 hours. 
+Time to complete each task: 1-2 hours. 
 
-Time to complete all: approx. 5-10 man-hours.!
+Time to complete all: approx. 6-12 man-hours.!
