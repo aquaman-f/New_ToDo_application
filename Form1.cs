@@ -27,7 +27,7 @@ namespace ToDo_app_new
             var notes = Notes;
             notes_data.DataSource = notes;
         }
-        private List<Todo> GetNotes()
+        public List<Todo> GetNotes()
         {
             var list = new List<Todo>();
             using (StreamReader streamReader = new StreamReader(@"C:\Users\larit\Source\Repos\aquaman-f\New_ToDo_application\todo_json.json"))
