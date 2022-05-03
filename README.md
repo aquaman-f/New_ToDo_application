@@ -1,6 +1,6 @@
 # New_ToDo_application
 
-Application minimum fuctions: 
+Application minimum functions: 
 
 - Users can see an input field where he can type in a to-do item
 - By pressing enter (or a button), the User can submit the to-do item and can see that being added to a list of to-do’s.
