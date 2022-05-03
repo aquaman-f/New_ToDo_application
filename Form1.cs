@@ -68,5 +68,11 @@ namespace ToDo_app_new
             notes_data.Columns["Created"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             notes_data.Columns["Check"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form2 showForm = new Form2();
+            showForm.Show();
+        }
     }
 }
