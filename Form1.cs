@@ -37,11 +37,7 @@ namespace ToDo_app_new
         }
         private void notes_complete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            notes_data.Columns["Note"].ReadOnly = true;
-            notes_data.Columns["Created"].ReadOnly = true;
-            notes_data.Columns["Note"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            notes_data.Columns["Created"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            notes_data.Columns["Check"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -56,5 +52,26 @@ namespace ToDo_app_new
             GetNotes();
         }
 
+        private void save_Click(object sender, EventArgs e)
+        {
+            var list = new List<Todo>();
+            foreach (DataGridViewRow row in notes_data.Rows)
+            {
+                var obj = new Todo()
+                {
+                    Note = row.Cells["Note"].Value.ToString(),
+                    Created = Convert.ToDateTime(row.Cells["Created"].Value),
+                    Deadline = Convert.ToDateTime(row.Cells["Deadline"].Value),
+                    Priority = Convert.ToBoolean(row.Cells["Priority"].Value),
+                    Check = Convert.ToBoolean(row.Cells["Check"].Value)
+                };
+                list.Add(obj);
+            }
+            using (StreamWriter streamwriter2 = new StreamWriter("todo_json.json"))
+            {
+                string jsonSave = JsonConvert.SerializeObject(list);
+                streamwriter2.WriteLine(jsonSave);
+            }
+        }
     }
 }
