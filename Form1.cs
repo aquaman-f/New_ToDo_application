@@ -36,6 +36,7 @@ namespace ToDo_app_new
             
             list = list.OrderByDescending(o => o.Priority).ToList();
             notes_data.DataSource = list;
+            format_stuff();
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -48,6 +49,7 @@ namespace ToDo_app_new
 
             list = list.OrderByDescending(o => o.Priority).ToList();
             notes_data.DataSource = list;
+            format_stuff();
 
         }
 
@@ -62,6 +64,7 @@ namespace ToDo_app_new
 
             list = list.OrderBy(o => o.Created).ToList();
             notes_data.DataSource = list;
+            format_stuff();
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
@@ -75,6 +78,7 @@ namespace ToDo_app_new
 
             list = list.OrderBy(o => o.Deadline).ToList();
             notes_data.DataSource = list;
+            format_stuff();
         }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
