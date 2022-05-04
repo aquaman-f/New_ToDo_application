@@ -51,14 +51,8 @@ namespace ToDo_app_new
                 string jsonSave = JsonConvert.SerializeObject(list);
                 streamwriter2.WriteLine(jsonSave);
             }
-
-            
-            
-
-           
-
-
-            this.Close();
+                       
+           this.Close();
         }
 
 
