@@ -43,6 +43,7 @@ namespace ToDo_app_new
                 list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
             }
 
+
             list.Add(obj);
 
             using (StreamWriter streamwriter2 = new StreamWriter("todo_json.json"))
@@ -51,13 +52,21 @@ namespace ToDo_app_new
                 streamwriter2.WriteLine(jsonSave);
             }
 
+            
+            
+
+           
+
+
             this.Close();
         }
+
 
 
         private void Form21_FormClosed(object sender, FormClosedEventArgs e)
         {
 
         }
+
     }
 }
