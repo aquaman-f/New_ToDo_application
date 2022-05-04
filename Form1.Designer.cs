@@ -47,7 +47,7 @@ namespace ToDo_app_new
             // notes_data
             // 
             this.notes_data.AllowUserToResizeColumns = false;
-            this.notes_data.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.notes_data.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.notes_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.notes_data.GridColor = System.Drawing.SystemColors.Control;
             this.notes_data.Location = new System.Drawing.Point(12, 87);
