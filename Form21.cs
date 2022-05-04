@@ -26,39 +26,47 @@ namespace ToDo_app_new
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            string teksti = textBox1.Text;
-            string now = label2.Text.ToString();
-            string deadline = dateTimePicker1.ToString();
-            bool priority = Convert.ToBoolean(checkBox1);
-            bool priority2 = false;
+        {          
+            Todo obj = new Todo()
+            {
+                Note = textBox1.Text,
+                Created = DateTime.Now,
+                Deadline = dateTimePicker1.Value,
+                Priority = checkBox1.Checked,
+                Check = false
+            };
+
+            var list = new List<Todo>();
+            using (StreamReader streamReader = new StreamReader("todo_json.json"))
+            {
+                var jsonMerkkijono = streamReader.ReadToEnd();
+                list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
+            }
+
+
+            list.Add(obj);
+
+            using (StreamWriter streamwriter2 = new StreamWriter("todo_json.json"))
+            {
+                string jsonSave = JsonConvert.SerializeObject(list);
+                streamwriter2.WriteLine(jsonSave);
+            }
 
             
             
 
-            //using (StreamWriter streamwriter2 = new StreamWriter())
-            //{
-            //    string jsonSave = JsonConvert.SerializeObject(teksti, Formatting.Indented);
-            //    streamwriter2.WriteLine(jsonSave);
-            //}
+           
 
 
             this.Close();
         }
 
-        //private void label1_Click(object sender, EventArgs e)
-        //{
 
-        //}
 
-        //private void Form21_Load(object sender, EventArgs e)
-        //{
+        private void Form21_FormClosed(object sender, FormClosedEventArgs e)
+        {
 
-        //}
+        }
 
-        //private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        //{
-
-        //}
     }
 }

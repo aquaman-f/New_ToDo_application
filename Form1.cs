@@ -18,24 +18,22 @@ namespace ToDo_app_new
 
         public Form1()
         {
-            Notes = GetNotes();
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var notes = Notes;
-            notes_data.DataSource = notes;
+            GetNotes();
         }
-        public List<Todo> GetNotes()
+        public void GetNotes()
         {
             var list = new List<Todo>();
-            using (StreamReader streamReader = new StreamReader(@"C:\Users\larit\Source\Repos\aquaman-f\New_ToDo_application\todo_json.json"))
+            using (StreamReader streamReader = new StreamReader("todo_json.json"))
             {
                 var jsonMerkkijono = streamReader.ReadToEnd();
                 list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
             }
-            return list;
+            notes_data.DataSource = list;
         }
         private void notes_complete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -49,17 +47,14 @@ namespace ToDo_app_new
         private void button1_Click(object sender, EventArgs e)
         {
             Form21 addNew = new Form21();
+            addNew.FormClosed += form2_closed;
             addNew.Show();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void form2_closed(object sender, FormClosedEventArgs e)
         {
-
+            GetNotes();
         }
 
-        //private void panel1_Paint(object sender, PaintEventArgs e)
-        //{
-
-        //}
     }
 }

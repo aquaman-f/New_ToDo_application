@@ -50,7 +50,6 @@ namespace ToDo_app_new
             this.notes_data.RowHeadersVisible = false;
             this.notes_data.Size = new System.Drawing.Size(734, 231);
             this.notes_data.TabIndex = 0;
-            this.notes_data.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button1
             // 
