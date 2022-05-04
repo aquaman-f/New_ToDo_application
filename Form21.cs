@@ -34,16 +34,31 @@ namespace ToDo_app_new
             bool priority2 = false;
 
             
-            add()
+            
 
-            using (StreamWriter streamwriter2 = new StreamWriter())
-            {
-                string jsonSave = JsonConvert.SerializeObject(teksti, Formatting.Indented);
-                streamwriter2.WriteLine(jsonSave);
-            }
+            //using (StreamWriter streamwriter2 = new StreamWriter())
+            //{
+            //    string jsonSave = JsonConvert.SerializeObject(teksti, Formatting.Indented);
+            //    streamwriter2.WriteLine(jsonSave);
+            //}
 
 
             this.Close();
         }
+
+        //private void label1_Click(object sender, EventArgs e)
+        //{
+
+        //}
+
+        //private void Form21_Load(object sender, EventArgs e)
+        //{
+
+        //}
+
+        //private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        //{
+
+        //}
     }
 }
