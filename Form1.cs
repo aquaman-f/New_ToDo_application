@@ -33,6 +33,60 @@ namespace ToDo_app_new
                 var jsonMerkkijono = streamReader.ReadToEnd();
                 list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
             }
+            
+            list = list.OrderByDescending(o => o.Priority).ToList();
+            notes_data.DataSource = list;
+        }
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            var list = new List<Todo>();
+            using (StreamReader streamReader = new StreamReader("todo_json.json"))
+            {
+                var jsonMerkkijono = streamReader.ReadToEnd();
+                list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
+            }
+
+            list = list.OrderByDescending(o => o.Priority).ToList();
+            notes_data.DataSource = list;
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            var list = new List<Todo>();
+            using (StreamReader streamReader = new StreamReader("todo_json.json"))
+            {
+                var jsonMerkkijono = streamReader.ReadToEnd();
+                list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
+            }
+
+            list = list.OrderBy(o => o.Created).ToList();
+            notes_data.DataSource = list;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            var list = new List<Todo>();
+            using (StreamReader streamReader = new StreamReader("todo_json.json"))
+            {
+                var jsonMerkkijono = streamReader.ReadToEnd();
+                list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
+            }
+
+            list = list.OrderBy(o => o.Deadline).ToList();
+            notes_data.DataSource = list;
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            var list = new List<Todo>();
+            using (StreamReader streamReader = new StreamReader("todo_json.json"))
+            {
+                var jsonMerkkijono = streamReader.ReadToEnd();
+                list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
+            }
+
+            list = list.OrderBy(o => o.Note).ToList();
             notes_data.DataSource = list;
         }
         private void notes_complete(object sender, DataGridViewBindingCompleteEventArgs e)
