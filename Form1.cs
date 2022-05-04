@@ -87,15 +87,31 @@ namespace ToDo_app_new
             }
 
             list = list.OrderBy(o => o.Note).ToList();
+
+            //list = list.OrderByDescending(o => o.Priority).ToList();
+
             notes_data.DataSource = list;
+            format_stuff();
         }
-        private void notes_complete(object sender, DataGridViewBindingCompleteEventArgs e)
+        public void format_stuff()
         {
-            notes_data.Columns["Note"].ReadOnly = true;
             notes_data.Columns["Created"].ReadOnly = true;
+            notes_data.Columns["Check"].DisplayIndex = 0;
+            notes_data.Columns["Created"].DefaultCellStyle.Format = "d/M/yyyy";
+            notes_data.Columns["Deadline"].DefaultCellStyle.Format = "d/M/yyyy";
             notes_data.Columns["Note"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             notes_data.Columns["Created"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            notes_data.Columns["Deadline"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            notes_data.Columns["Priority"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             notes_data.Columns["Check"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+
+            foreach (DataGridViewRow row in notes_data.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells["Check"].Value) == true)
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -110,5 +126,49 @@ namespace ToDo_app_new
             GetNotes();
         }
 
+        private void save_Click(object sender, EventArgs e)
+        {
+            var list = new List<Todo>();
+            foreach (DataGridViewRow row in notes_data.Rows)
+            {
+                var obj = new Todo()
+                {
+                    Note = row.Cells["Note"].Value.ToString(),
+                    Created = Convert.ToDateTime(row.Cells["Created"].Value),
+                    Deadline = Convert.ToDateTime(row.Cells["Deadline"].Value),
+                    Priority = Convert.ToBoolean(row.Cells["Priority"].Value),
+                    Check = Convert.ToBoolean(row.Cells["Check"].Value)
+                };
+                list.Add(obj);
+            }
+            using (StreamWriter streamwriter2 = new StreamWriter("todo_json.json"))
+            {
+                string jsonSave = JsonConvert.SerializeObject(list);
+                streamwriter2.WriteLine(jsonSave);
+            }
+            GetNotes();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int selectedrowindex = notes_data.SelectedCells[0].RowIndex;
+            DataGridViewRow selectedRow = notes_data.Rows[selectedrowindex];
+            string cellValue = Convert.ToString(selectedRow.Cells["Note"].Value);
+         
+            var list = new List<Todo>();
+            using (StreamReader streamReader = new StreamReader("todo_json.json"))
+            {
+                var jsonMerkkijono = streamReader.ReadToEnd();
+                list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
+            }
+            list.RemoveAll(o => o.Note == cellValue);
+
+            using (StreamWriter streamwriter2 = new StreamWriter("todo_json.json"))
+            {
+                string jsonSave = JsonConvert.SerializeObject(list);
+                streamwriter2.WriteLine(jsonSave);
+            }
+            GetNotes();
+        }
     }
 }
