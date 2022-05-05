@@ -128,17 +128,20 @@ namespace ToDo_app_new
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int selectedrowindex = notes_data.SelectedCells[0].RowIndex;
-            DataGridViewRow selectedRow = notes_data.Rows[selectedrowindex];
-            string cellValue = Convert.ToString(selectedRow.Cells["Note"].Value);
-         
             var list = new List<Todo>();
+
             using (StreamReader streamReader = new StreamReader("todo_json.json"))
             {
                 var jsonMerkkijono = streamReader.ReadToEnd();
                 list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
             }
-            list.RemoveAll(o => o.Note == cellValue);
+
+            foreach (DataGridViewRow row in notes_data.SelectedRows)
+            {
+                string cellValue = Convert.ToString(row.Cells["Note"].Value);             
+                             
+                list.RemoveAll(o => o.Note == cellValue);
+            }
 
             using (StreamWriter streamwriter2 = new StreamWriter("todo_json.json"))
             {
@@ -150,7 +153,7 @@ namespace ToDo_app_new
 
         private void show_complete()
         {
-            if (show.Checked)
+            if(show.Checked)
             {
                 foreach (DataGridViewRow dr in notes_data.Rows)
                 {
@@ -158,7 +161,7 @@ namespace ToDo_app_new
                         dr.Visible = true;
                 }
             }
-            else if (!show.Checked)
+            else
             {
                 foreach (DataGridViewRow dr in notes_data.Rows)
                 {
