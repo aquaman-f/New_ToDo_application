@@ -14,7 +14,7 @@ namespace ToDo_app_new
 {
     public partial class Form1 : Form
     {
-        public List<Todo> Notes { get; set; }
+        int sort = 1;
 
         public Form1()
         {
@@ -33,69 +33,40 @@ namespace ToDo_app_new
                 var jsonMerkkijono = streamReader.ReadToEnd();
                 list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
             }
-            
-            list = list.OrderByDescending(o => o.Priority).ToList();
+            if (sort == 1)
+                list = list.OrderByDescending(o => o.Priority).ToList();
+            else if (sort == 2)
+                list = list.OrderBy(o => o.Created).ToList();
+            else if (sort == 3)
+                list = list.OrderBy(o => o.Deadline).ToList();
+            else if (sort == 4)
+                list = list.OrderBy(o => o.Note).ToList();
+
             notes_data.DataSource = list;
             format_stuff();
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            var list = new List<Todo>();
-            using (StreamReader streamReader = new StreamReader("todo_json.json"))
-            {
-                var jsonMerkkijono = streamReader.ReadToEnd();
-                list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
-            }
-
-            list = list.OrderByDescending(o => o.Priority).ToList();
-            notes_data.DataSource = list;
-            format_stuff();
-
+            sort = 1;
+            GetNotes();
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            var list = new List<Todo>();
-            using (StreamReader streamReader = new StreamReader("todo_json.json"))
-            {
-                var jsonMerkkijono = streamReader.ReadToEnd();
-                list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
-            }
-
-            list = list.OrderBy(o => o.Created).ToList();
-            notes_data.DataSource = list;
-            format_stuff();
+            sort = 2;
+            GetNotes();
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            var list = new List<Todo>();
-            using (StreamReader streamReader = new StreamReader("todo_json.json"))
-            {
-                var jsonMerkkijono = streamReader.ReadToEnd();
-                list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
-            }
-
-            list = list.OrderBy(o => o.Deadline).ToList();
-            notes_data.DataSource = list;
-            format_stuff();
+            sort = 3;
+            GetNotes();
         }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
-            var list = new List<Todo>();
-            using (StreamReader streamReader = new StreamReader("todo_json.json"))
-            {
-                var jsonMerkkijono = streamReader.ReadToEnd();
-                list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
-            }
-
-            list = list.OrderBy(o => o.Note).ToList();
-
-            //list = list.OrderByDescending(o => o.Priority).ToList();
-
-            notes_data.DataSource = list;
-            format_stuff();
+            sort = 4;
+            GetNotes();
         }
         public void format_stuff()
         {
@@ -116,6 +87,8 @@ namespace ToDo_app_new
                     row.DefaultCellStyle.BackColor = Color.LightGreen;
                 }
             }
+
+            show_complete();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -150,22 +123,25 @@ namespace ToDo_app_new
                 string jsonSave = JsonConvert.SerializeObject(list);
                 streamwriter2.WriteLine(jsonSave);
             }
-            GetNotes();
+            GetNotes();            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int selectedrowindex = notes_data.SelectedCells[0].RowIndex;
-            DataGridViewRow selectedRow = notes_data.Rows[selectedrowindex];
-            string cellValue = Convert.ToString(selectedRow.Cells["Note"].Value);
-         
             var list = new List<Todo>();
+
             using (StreamReader streamReader = new StreamReader("todo_json.json"))
             {
                 var jsonMerkkijono = streamReader.ReadToEnd();
                 list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
             }
-            list.RemoveAll(o => o.Note == cellValue);
+
+            foreach (DataGridViewRow row in notes_data.SelectedRows)
+            {
+                string cellValue = Convert.ToString(row.Cells["Note"].Value);             
+                             
+                list.RemoveAll(o => o.Note == cellValue);
+            }
 
             using (StreamWriter streamwriter2 = new StreamWriter("todo_json.json"))
             {
@@ -174,5 +150,31 @@ namespace ToDo_app_new
             }
             GetNotes();
         }
+
+        private void show_complete()
+        {
+            if(show.Checked)
+            {
+                foreach (DataGridViewRow dr in notes_data.Rows)
+                {
+                    if (Convert.ToBoolean(dr.Cells["Check"].Value) == true)
+                        dr.Visible = true;
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow dr in notes_data.Rows)
+                {
+                    if (Convert.ToBoolean(dr.Cells["Check"].Value) == true)
+                        dr.Visible = false;
+                }
+            }
+        }
+
+        private void show_CheckedChanged(object sender, EventArgs e)
+        {
+            show_complete();
+        }
+
     }
 }
