@@ -40,7 +40,15 @@ namespace ToDo_app_new
             using (StreamReader streamReader = new StreamReader("todo_json.json"))
             {
                 var jsonMerkkijono = streamReader.ReadToEnd();
-                list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
+
+                if (jsonMerkkijono.Length < 4 || string.IsNullOrEmpty(jsonMerkkijono) || string.IsNullOrWhiteSpace(jsonMerkkijono))
+                {
+                    //MessageBox.Show("Adding first entry to an empty list!");
+                }
+                else
+                {
+                    list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
+                }                
             }
 
 
@@ -48,7 +56,7 @@ namespace ToDo_app_new
 
             using (StreamWriter streamwriter2 = new StreamWriter("todo_json.json"))
             {
-                string jsonSave = JsonConvert.SerializeObject(list);
+                string jsonSave = JsonConvert.SerializeObject(list, Formatting.Indented);
                 streamwriter2.WriteLine(jsonSave);
             }
                        
