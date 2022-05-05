@@ -166,7 +166,9 @@ namespace ToDo_app_new
 
         private void show_complete()
         {
-            if(show.Checked)
+            notes_data.CurrentCell = null;
+
+            if (show.Checked)
             {
                 foreach (DataGridViewRow dr in notes_data.Rows)
                 {
