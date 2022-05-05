@@ -174,5 +174,17 @@ namespace ToDo_app_new
             }
             GetNotes();
         }
+
+        private void viewbutton_Click(object sender, EventArgs e)
+        {
+            Form11 addNew = new Form11();
+            int selectedrowindex = notes_data.SelectedCells[0].RowIndex;
+            DataGridViewRow selectedRow = notes_data.Rows[selectedrowindex];
+            addNew.passingvalue = Convert.ToString(selectedRow.Cells["Note"].Value);
+            addNew.passingvalue1 = Convert.ToString(selectedRow.Cells["Deadline"].Value);
+            addNew.passingvalue2 = Convert.ToString(selectedRow.Cells["Created"].Value);
+            addNew.FormClosed += form2_closed;
+            addNew.ShowDialog();
+        }
     }
 }

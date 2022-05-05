@@ -43,6 +43,7 @@ namespace ToDo_app_new
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.save = new System.Windows.Forms.Button();
+            this.viewbutton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.notes_data)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -78,7 +79,6 @@ namespace ToDo_app_new
             this.notes_data.GridColor = System.Drawing.SystemColors.Control;
             this.notes_data.Location = new System.Drawing.Point(18, 134);
             this.notes_data.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.notes_data.MultiSelect = false;
             this.notes_data.Name = "notes_data";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
@@ -90,7 +90,7 @@ namespace ToDo_app_new
             this.notes_data.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.notes_data.RowHeadersVisible = false;
             this.notes_data.RowHeadersWidth = 62;
-            this.notes_data.Size = new System.Drawing.Size(967, 289);
+            this.notes_data.Size = new System.Drawing.Size(967, 355);
             this.notes_data.TabIndex = 0;
             // 
             // button1
@@ -101,7 +101,7 @@ namespace ToDo_app_new
             this.button1.Location = new System.Drawing.Point(18, 499);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(1101, 94);
+            this.button1.Size = new System.Drawing.Size(525, 94);
             this.button1.TabIndex = 1;
             this.button1.Text = "Add task";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -222,11 +222,27 @@ namespace ToDo_app_new
             this.save.UseVisualStyleBackColor = false;
             this.save.Click += new System.EventHandler(this.save_Click);
             // 
+            // viewbutton
+            // 
+            this.viewbutton.BackColor = System.Drawing.Color.Gray;
+            this.viewbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewbutton.ForeColor = System.Drawing.Color.White;
+            this.viewbutton.Location = new System.Drawing.Point(566, 497);
+            this.viewbutton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.viewbutton.Name = "viewbutton";
+            this.viewbutton.Size = new System.Drawing.Size(553, 94);
+            this.viewbutton.TabIndex = 18;
+            this.viewbutton.Text = "View";
+            this.viewbutton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.viewbutton.UseVisualStyleBackColor = false;
+            this.viewbutton.Click += new System.EventHandler(this.viewbutton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1142, 692);
+            this.Controls.Add(this.viewbutton);
             this.Controls.Add(this.radioButton4);
             this.Controls.Add(this.radioButton3);
             this.Controls.Add(this.radioButton2);
@@ -265,6 +281,6 @@ namespace ToDo_app_new
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.Button save;
-
+        private System.Windows.Forms.Button viewbutton;
     }
 }
