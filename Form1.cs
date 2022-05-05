@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +15,7 @@ namespace ToDo_app_new
 {
     public partial class Form1 : Form
     {
-        public List<Todo> Notes { get; set; }
+        int sort = 1;
 
         public Form1()
         {
@@ -33,69 +34,40 @@ namespace ToDo_app_new
                 var jsonMerkkijono = streamReader.ReadToEnd();
                 list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
             }
-            
-            list = list.OrderByDescending(o => o.Priority).ToList();
+            if (sort == 1)
+                list = list.OrderByDescending(o => o.Priority).ToList();
+            else if (sort == 2)
+                list = list.OrderBy(o => o.Created).ToList();
+            else if (sort == 3)
+                list = list.OrderBy(o => o.Deadline).ToList();
+            else if (sort == 4)
+                list = list.OrderBy(o => o.Note).ToList();
+
             notes_data.DataSource = list;
             format_stuff();
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            var list = new List<Todo>();
-            using (StreamReader streamReader = new StreamReader("todo_json.json"))
-            {
-                var jsonMerkkijono = streamReader.ReadToEnd();
-                list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
-            }
-
-            list = list.OrderByDescending(o => o.Priority).ToList();
-            notes_data.DataSource = list;
-            format_stuff();
-
+            sort = 1;
+            GetNotes();
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            var list = new List<Todo>();
-            using (StreamReader streamReader = new StreamReader("todo_json.json"))
-            {
-                var jsonMerkkijono = streamReader.ReadToEnd();
-                list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
-            }
-
-            list = list.OrderBy(o => o.Created).ToList();
-            notes_data.DataSource = list;
-            format_stuff();
+            sort = 2;
+            GetNotes();
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            var list = new List<Todo>();
-            using (StreamReader streamReader = new StreamReader("todo_json.json"))
-            {
-                var jsonMerkkijono = streamReader.ReadToEnd();
-                list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
-            }
-
-            list = list.OrderBy(o => o.Deadline).ToList();
-            notes_data.DataSource = list;
-            format_stuff();
+            sort = 3;
+            GetNotes();
         }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
-            var list = new List<Todo>();
-            using (StreamReader streamReader = new StreamReader("todo_json.json"))
-            {
-                var jsonMerkkijono = streamReader.ReadToEnd();
-                list = JsonConvert.DeserializeObject<List<Todo>>(jsonMerkkijono);
-            }
-
-            list = list.OrderBy(o => o.Note).ToList();
-
-            //list = list.OrderByDescending(o => o.Priority).ToList();
-
-            notes_data.DataSource = list;
-            format_stuff();
+            sort = 4;
+            GetNotes();
         }
         public void format_stuff()
         {
