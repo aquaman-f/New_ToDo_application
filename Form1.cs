@@ -87,6 +87,8 @@ namespace ToDo_app_new
                     row.DefaultCellStyle.BackColor = Color.LightGreen;
                 }
             }
+
+            show_complete();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -121,7 +123,7 @@ namespace ToDo_app_new
                 string jsonSave = JsonConvert.SerializeObject(list);
                 streamwriter2.WriteLine(jsonSave);
             }
-            GetNotes();
+            GetNotes();            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -145,5 +147,31 @@ namespace ToDo_app_new
             }
             GetNotes();
         }
+
+        private void show_complete()
+        {
+            if (show.Checked)
+            {
+                foreach (DataGridViewRow dr in notes_data.Rows)
+                {
+                    if (Convert.ToBoolean(dr.Cells["Check"].Value) == true)
+                        dr.Visible = true;
+                }
+            }
+            else if (!show.Checked)
+            {
+                foreach (DataGridViewRow dr in notes_data.Rows)
+                {
+                    if (Convert.ToBoolean(dr.Cells["Check"].Value) == true)
+                        dr.Visible = false;
+                }
+            }
+        }
+
+        private void show_CheckedChanged(object sender, EventArgs e)
+        {
+            show_complete();
+        }
+
     }
 }
