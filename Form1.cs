@@ -189,13 +189,22 @@ namespace ToDo_app_new
         private void viewbutton_Click(object sender, EventArgs e)
         {
             Form11 addNew = new Form11();
-            int selectedrowindex = notes_data.SelectedCells[0].RowIndex;
-            DataGridViewRow selectedRow = notes_data.Rows[selectedrowindex];
-            addNew.passingvalue = Convert.ToString(selectedRow.Cells["Note"].Value);
-            addNew.passingvalue1 = Convert.ToString(selectedRow.Cells["Deadline"].Value);
-            addNew.passingvalue2 = Convert.ToString(selectedRow.Cells["Created"].Value);
-            addNew.FormClosed += form2_closed;
-            addNew.ShowDialog();
+            if (notes_data.SelectedRows.Count > 0)
+            {
+                int selectedrowindex = notes_data.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = notes_data.Rows[selectedrowindex];
+                addNew.passingvalue = Convert.ToString(selectedRow.Cells["Note"].Value);
+                addNew.passingvalue1 = Convert.ToDateTime(selectedRow.Cells["Deadline"].Value);
+                addNew.passingvalue2 = Convert.ToDateTime(selectedRow.Cells["Created"].Value);
+                addNew.FormClosed += form2_closed;
+                addNew.ShowDialog();
+            }
+            else
+            {
+                //nothing
+            }
+                
+            
         }
 
         private void show_complete()
@@ -225,6 +234,10 @@ namespace ToDo_app_new
             show_complete();
         }
 
-
+        private void label3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Here you can write some info and text how to use functions.\n\n" +
+                "Credits:\nAnnika Nuutinen\nJukka Tuorila\nMikko Huotari\nMikael Thure\nLari Törrönen\n\n2022");
+        }
     }
 }

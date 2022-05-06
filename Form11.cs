@@ -13,8 +13,8 @@ namespace ToDo_app_new
     public partial class Form11 : Form
     {
         public string Note;
-        public string Created;
-        public string Deadline;
+        public DateTime Created;
+        public DateTime Deadline;
 
         public string passingvalue
         {
@@ -23,14 +23,14 @@ namespace ToDo_app_new
 
         }
 
-        public string passingvalue1
+        public DateTime passingvalue1
         {
             get { return Deadline; }
             set { Deadline = value; }
 
         }
 
-        public string passingvalue2
+        public DateTime passingvalue2
         {
             get { return Created; }
             set { Created = value; }
@@ -56,8 +56,8 @@ namespace ToDo_app_new
         private void Form11_Load(object sender, EventArgs e)
         {
             richTextBox1.Text = Note;
-            label5.Text = Deadline;
-            label4.Text = Created;
+            label5.Text = Deadline.ToShortDateString();
+            label4.Text = Created.ToShortDateString();
         }
     }
 }
