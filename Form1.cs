@@ -234,6 +234,10 @@ namespace ToDo_app_new
             show_complete();
         }
 
-
+        private void label3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Here you can write some info and text how to use functions.\n\n" +
+                "Credits:\nAnnika Nuutinen\nJukka Tuorila\nMikko Huotari\nMikael Thure\nLari Törrönen\n\n2022");
+        }
     }
 }

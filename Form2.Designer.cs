@@ -36,10 +36,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(55, 106);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(41, 86);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 55);
+            this.button1.Size = new System.Drawing.Size(83, 45);
             this.button1.TabIndex = 0;
             this.button1.Text = "YES";
             this.button1.UseVisualStyleBackColor = true;
@@ -49,20 +48,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(35, 33);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(8, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(285, 28);
+            this.label1.Size = new System.Drawing.Size(250, 22);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Delete selected task?";
+            this.label1.Text = "Delete selected task(s)?";
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(192, 106);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Location = new System.Drawing.Point(144, 86);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(111, 55);
+            this.button2.Size = new System.Drawing.Size(83, 45);
             this.button2.TabIndex = 3;
             this.button2.Text = "NO";
             this.button2.UseVisualStyleBackColor = true;
@@ -70,13 +67,13 @@
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(355, 190);
+            this.ClientSize = new System.Drawing.Size(266, 154);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form2";
             this.ShowIcon = false;
